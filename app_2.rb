@@ -10,8 +10,8 @@ player1 = HumanPlayer.new("Ta Brute surpuissante")
 
 ai_opponents_array = []
 
-ai_opponents_array << player2 = Player.new("Grand-père Yves dit 'la p'tite frappe'")
-ai_opponents_array << player3 = Player.new("Grand-mère Josette dite 'la passive agressive'")
+ai_opponents_array << player2 = Player.new("Grand-père Yves 'la p'tite frappe'")
+ai_opponents_array << player3 = Player.new("Grand-mère Josette 'la vieille peau'")
 
 # player4 = Player.new("Oncle_Pascal_AKA_le_bourrin")
 # player5 = Player.new("Cousin_Jean-Michel_AKA_le_boulet")
@@ -66,53 +66,57 @@ def round_preview(player1, player2, player3)
   puts "           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n\n"
 end
 
+# --- Turn flow
+
 def turn_flow(player1, player2, player3, ai_opponents_array)
   while player1.life_points > 0 && (player2.life_points > 0 || player3.life_points > 0)
     round_preview(player1, player2, player3)
 
-    puts "\nQuelle action veux-tu effectuer ce tour-ci ?\n"
-    puts "  A - Chercher une meilleure arme ?        0 - Attaquer #{player2.name} qui a #{player2.life_points} points de vie."
-    puts "  S - Chercher à te soigner ?              1 - Attaquer #{player3.name} qui a #{player3.life_points} points de vie"
+    puts "\nQuelle action veux-tu effectuer ce tour-ci ?\n\n"
+    puts "  A - Chercher une meilleure arme ?        1 - Attaquer #{player2.name} qui a #{player2.life_points} PVs"
+    puts "  S - Chercher à te soigner ?              2 - Attaquer #{player3.name} qui a #{player3.life_points} PVs"
     puts "\n"
 
     print "\n> "
     input = gets.chomp
-
     input = input.to_s.upcase
 
-    if input == "A" || input == "S" || input == "0" || input == "1"
+    if input == "A" || input == "S" || input == "1" || input == "2"
       case input
       when "A"
         player1.search_weapon
       when "S"
         player1.search_health_pack
-      when "0"
-        player1.attacks(player2)
       when "1"
+        player1.attacks(player2)
+      when "2"
         player1.attacks(player3)
       end
     else
-      puts "Sélection invalide. \nTu passes ton tour ! \nChoisis une action VALIDE au tour prochain p'tit NOOBLARD !"
+      puts "Sélection INVALIDE !\nT'es trop NUL donc tu passes ton tour ! \nEssaies de choisir une action VALIDE au tour prochain p'tit NOOBLARD !"
     end
 
     puts "\nAppuie sur 'Entrée' pour continuer et lancer le tour des bots !"
     input = gets.chomp
 
-    puts "               ~~~~~~~~~~~~~~~~~~ BOTS TURN !~~~~~~~~~~~~~~~~~~"
+    puts "            ~~~~~~~~~~~~~~~~~~~~~ BOTS TURN ~~~~~~~~~~~~~~~~~~~~~"
     puts "Q( *.*)D                  <<==(1_1 Q)  <<==(0_0 Q) "
-    puts "               ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n\n"
-    puts "C'est au tour des bots de jouer ! Ils te maravent ta sale ganache et te lattent tes p'tites fesses !"
+    puts "            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n\n"
+    puts "C'est au tour des bots de jouer !\nIls te maravent ta sale ganache ! \nIls te lattent tes p'tites fesses !"
     puts "\n\n"
-    for opponent in ai_opponents_array
+
+    ai_opponents_array.each_with_index do |opponent, index|
       if opponent.life_points > 0 && player1.life_points > 0
         opponent.attacks(player1)
-        # if ai_opponents_array[opponent] !
-        puts "Appuie sur 'Entrée' pour passer au bot suivant !"
-        input = gets.chomp
+        if index != ai_opponents_array.length - 1
+          puts "Appuie sur 'Entrée' pour passer au bot suivant !"
+          gets.chomp
+        else
+          puts "Appuie sur 'Entrée' pour passer au prochain tour !"
+          gets.chomp
+        end
       end
     end
-    puts "Appuie sur 'Entrée' pour jouer ton nouveau tour !"
-    input = gets.chomp
   end
 end
 
