@@ -1,6 +1,4 @@
-
-  
-# [MOVE REPONAME HERE]
+# THP_Week_4_Day_2_POO_Mini_Game
 
 ## Set up instructions
 
@@ -17,4 +15,3 @@ Contact person(s) in Credits section below.
 
 ## Credit
 Robin DEBESSEL | @ho757uff on Discord
-# THP_Week_4_Day_2_POO_Heritage
