@@ -6,11 +6,12 @@ require_relative "lib/player"
 
 # player1 = Player.new("Grand_père_Yves_AKA_la_taffiole")
 # player2 = Player.new("Grand_mère_Josette_AKA_la_véhemante")
-player1 = Player.new("Grand-père Yves dit 'la_taffiole'")
-player2 = Player.new("Grand-mère Josette dite 'l'agressive'")
-player3 = Player.new("Oncle_Pascal_AKA_le_bourrin")
-player4 = Player.new("Cousin_Jean-Michel_AKA_le_boulet")
-player5 = Player.new("Belle_soeur_Marie-Antoinette_AKA_la_bourge")
+player1 = HumanPlayer.new("Ta Brute surpuissante")
+player2 = Player.new("Grand-père Yves dit 'la_taffiole'")
+player3 = Player.new("Grand-mère Josette dite 'l'agressive'")
+player4 = Player.new("Oncle_Pascal_AKA_le_bourrin")
+player5 = Player.new("Cousin_Jean-Michel_AKA_le_boulet")
+player6 = Player.new("Belle_soeur_Marie-Antoinette_AKA_la_bourge")
 
 def welcome_screen
   puts "\n\n"
@@ -43,7 +44,7 @@ end
 def round_preview(player1, player2)
   puts "           ~~~~~~~~~~~~~~~~~~~~ NEW ROUND !~~~~~~~~~~~~~~~~~~~~"
   puts "\n"
-  puts "Q( *.*)D                                                         Q(0_0 Q)"
+  puts "Q( *.*)D                                                          Q(0_0 Q)"
   puts "\n"
   puts "           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"
 

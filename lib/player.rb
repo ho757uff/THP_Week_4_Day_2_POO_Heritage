@@ -10,7 +10,7 @@ class Player
   # ---
 
   def show_state
-    print "~ Le joueur #{name} a actuellement #{life_points}PVs."
+    print "~ Le joueur #{@name} a actuellement #{@life_points} PVs."
   end
 
   # ---
@@ -19,19 +19,19 @@ class Player
     @life_points -= damage
     if @life_points <= 0
       @life_points = 0
-      puts "> Le joueur #{name} n'a plus de PVs! Il est complètement DIE."
-      puts "\n\n           Rest In Pieces dear #{name} !"
+      puts "> Le joueur #{@name} n'a plus de PVs! Il est complètement DIE."
+      puts "\n\n           Rest In Pieces dear #{@name} !"
     else
-      puts "> Le joueur #{name} n'a plus que #{life_points}PVs.\n\n"
+      puts "> Le joueur #{@name} n'a plus que #{@life_points}PVs.\n\n"
     end
   end
 
   # ---
 
   def attacks(player)
-    puts ">>> #{name} attaque #{player.name} !"
+    puts ">>> #{@name} attaque #{player.name} !"
     attack_damage = compute_damage
-    puts ">> #{name} inflige #{attack_damage} point(s) de dégât(s) à #{player.name} !"
+    puts ">> #{@name} inflige #{attack_damage} point(s) de dégât(s) à #{player.name} !"
     player.gets_damage(attack_damage)
   end
 
@@ -44,18 +44,20 @@ end # ferme la classe "Player"
 
 # Classe représentant un joueur humain
 class HumanPlayer < Player
-  attr_accessor :weapon_level
+  attr_accessor :current_weapon_level
 
-  def initialize(name, life_points = 100, weapon_level = 1)
-    @current_weapon_level = weapon_level
+  def initialize(name)
+    super(name)
+    @life_points = 100
+    @current_weapon_level = 1
   end
 
   def show_state
-    print "~ Le joueur #{name} a actuellement #{life_points}PVs et une arme de niveau #{weapon_level}."
+    print "~ Le joueur #{@name} a actuellement #{@life_points} PVs et une arme de niveau #{@current_weapon_level}."
   end
 
   def compute_damage
-    rand(1..6) * @weapon_level
+    rand(1..6) * @current_weapon_level
   end
 
   # ---
@@ -90,4 +92,9 @@ class HumanPlayer < Player
       puts "\nTu as trouvé un pack de +50PVs ┏━┓ ︵ /(^.^/)! \nC'est toujours ça de pris pour un mec lambda ! \n"
     end
   end
+
+
+
+
+  
 end # ferme la classe "HumanPlayer"
