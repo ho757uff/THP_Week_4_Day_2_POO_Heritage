@@ -4,14 +4,22 @@ Bundler.require
 require_relative "lib/game"
 require_relative "lib/player"
 
-# player1 = Player.new("Grand_père_Yves_AKA_la_taffiole")
-# player2 = Player.new("Grand_mère_Josette_AKA_la_véhemante")
+# --- Création des joueurs
+
 player1 = HumanPlayer.new("Ta Brute surpuissante")
-player2 = Player.new("Grand-père Yves dit 'la_taffiole'")
-player3 = Player.new("Grand-mère Josette dite 'l'agressive'")
-player4 = Player.new("Oncle_Pascal_AKA_le_bourrin")
-player5 = Player.new("Cousin_Jean-Michel_AKA_le_boulet")
-player6 = Player.new("Belle_soeur_Marie-Antoinette_AKA_la_bourge")
+
+ai_opponents_array = []
+
+ai_opponents_array << player2 = Player.new("Grand-père Yves dit 'la p'tite frappe'")
+ai_opponents_array << player3 = Player.new("Grand-mère Josette dite 'l'agressive'")
+
+
+
+# player4 = Player.new("Oncle_Pascal_AKA_le_bourrin")
+# player5 = Player.new("Cousin_Jean-Michel_AKA_le_boulet")
+# player6 = Player.new("Belle_soeur_Marie-Antoinette_AKA_la_bourge")
+
+# --- Welcome screen
 
 def welcome_screen
   puts "\n\n"
@@ -24,7 +32,7 @@ def welcome_screen
   puts "           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"
 end
 
-# ---
+# --- Warmup
 
 def combat_warmup(player1, player2)
   puts "\nLadies & Gentlemen! Bienvenue pour ce combat d'anthologie qui opposera...\n"
@@ -39,7 +47,7 @@ def combat_warmup(player1, player2)
   puts "\n\n"
 end
 
-# ---
+# --- Round preview
 
 def round_preview(player1, player2)
   puts "           ~~~~~~~~~~~~~~~~~~~~ NEW ROUND !~~~~~~~~~~~~~~~~~~~~"
@@ -55,16 +63,16 @@ def round_preview(player1, player2)
   puts "\n\n"
   puts "               ~~~~~~~~~~~~~~~~~~ FIGHT !~~~~~~~~~~~~~~~~~~"
   puts "\n"
-  puts "                      Q( *.*)=D    <<=(0_0 Q) "
+  puts "                          Q( *.*)=D    <<=(0_0 Q) "
   puts "\n"
-  puts "               ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n\n"
+  puts "               ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n\n"
 end
 
-# ---
+# --- Combat flow
 
-def combat(player1, player2)
-  while player1.life_points > 0 && player2.life_points > 0
-    round_preview(player1, player2)
+def combat(player1, player2, player3)
+  while player1.life_points > 0 && (player2.life_points > 0 || player3.life_points > 0) 
+    round_preview(player1)
 
     player1.attacks(player2)
     break if player2.life_points <= 0 # Check if player2 is defeated after player1's attack
@@ -76,7 +84,7 @@ def combat(player1, player2)
   and_the_winner_is(player1, player2)
 end
 
-# ---
+# --- Winner announcement
 
 def and_the_winner_is(player1, player2)
   if player1.life_points <= 0
@@ -87,7 +95,7 @@ def and_the_winner_is(player1, player2)
   puts "                               ¯\\_(ツ)_/¯\n\n" 
 end
 
-# round_preview(player1, player2)
+# --- Game flow
 welcome_screen
 combat_warmup(player1, player2)
 combat(player1, player2)

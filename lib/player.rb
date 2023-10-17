@@ -20,7 +20,7 @@ class Player
     if @life_points <= 0
       @life_points = 0
       puts "> Le joueur #{@name} n'a plus de PVs! Il est complètement DIE."
-      puts "\n\n           Rest In Pieces dear #{@name} !"
+      puts "\n\n              Rest In Pieces dear #{@name} !"
     else
       puts "> Le joueur #{@name} n'a plus que #{@life_points}PVs.\n\n"
     end
@@ -40,7 +40,7 @@ class Player
   end
 end # ferme la classe "Player"
 
-# ---
+# --- 
 
 # Classe représentant un joueur humain
 class HumanPlayer < Player
@@ -92,6 +92,7 @@ class HumanPlayer < Player
       puts "\nTu as trouvé un pack de +50PVs ┏━┓ ︵ /(^.^/)! \nC'est toujours ça de pris pour un mec lambda ! \n"
     end
   end
+
 
 
 
